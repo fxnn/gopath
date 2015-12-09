@@ -45,3 +45,12 @@ func (g GoPath) withErr(err error) GoPath {
 func (g GoPath) withFileInfo(fileInfo os.FileInfo) GoPath {
 	return GoPath{g.path, g.err, fileInfo}
 }
+
+type GoPathTransformer func(GoPath) GoPath
+
+func (g GoPath) Do(transformer GoPathTransformer) GoPath {
+	if g.HasErr() {
+		return g
+	}
+	return transformer(g)
+}

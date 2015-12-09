@@ -2,8 +2,34 @@ package gopath
 
 import (
 	"os"
+	"path"
 	"path/filepath"
 )
+
+func (g GoPath) Append(s string) GoPath {
+	if g.HasErr() {
+		return g
+	}
+	return g.withPath(g.Path() + s)
+}
+
+func (g GoPath) Join(other GoPath) GoPath {
+	return g.JoinPath(other.Path())
+}
+
+func (g GoPath) JoinPath(p string) GoPath {
+	if g.HasErr() {
+		return g
+	}
+	return g.withPath(path.Join(g.Path(), p))
+}
+
+func (g GoPath) Dir() GoPath {
+	if g.HasErr() {
+		return g
+	}
+	return g.withPath(path.Dir(g.Path()))
+}
 
 // Stat calls os.Stat and caches the FileInfo result inside the returned
 // GoPath.
@@ -21,12 +47,12 @@ func (g GoPath) Stat() GoPath {
 	}
 }
 
-// AbsPath calls filepath.Abs() on the path.
+// Abs calls filepath.Abs() on the path.
 // If the path is already absolute, it returns the path itself.
 // Otherwise, it returns an absolute representation of the path using the
 // current working directory.
 // If an error occurs, it returns an errorneous GoPath.
-func (g GoPath) AbsPath() GoPath {
+func (g GoPath) Abs() GoPath {
 	if g.HasErr() {
 		return g
 	}
@@ -64,4 +90,15 @@ func (g GoPath) Clean() GoPath {
 	}
 
 	return g.withPath(filepath.Clean(g.path))
+}
+
+func (g GoPath) GlobAny() GoPath {
+	matches, err := g.Glob()
+	if err != nil {
+		return FromError(err)
+	}
+	if len(matches) > 0 {
+		return FromPath(matches[0])
+	}
+	return Empty()
 }
