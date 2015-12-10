@@ -1,6 +1,9 @@
 # gopath
 An alternative Go API for operating on paths without the need for error handling between each step.
 
+[![Build Status](https://travis-ci.org/fxnn/gopath.svg?branch=master)](https://travis-ci.org/fxnn/gopath)
+[![GoDoc](https://godoc.org/github.com/fxnn/gopath?status.svg)](https://godoc.org/github.com/fxnn/gopath)
+
 ## Usage
 
 Instead of
