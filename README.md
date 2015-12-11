@@ -37,9 +37,28 @@ if p.HasErr() {
 // go on
 ```
 
-The idea: the GoPath-object encapsulates a path _and_ an error object.
+The idea: the GoPath object encapsulates a path _and_ an error object.
 Now, as soon as an error occured, each operation turns to a no-op.
 That's why it suffices to check for errors in the end.
+
+
+## Development
+
+While this project embeds functions from the `os`, `path` and `path.filepath` packages,
+it is far from being complete.
+Pull requests are welcome!
+
+Please note, that I split the functionality into several files.
+I hope you find their names to be quite self-explanatory.
+We have
+
+* `gopath.go`: typedef, constructor and elementary functions
+* `err.go`: functionality around error handling
+* `transform.go`: transformations from GoPath to GoPath objects
+* `terminal.go`: transformations from GoPath to other values
+* `predicate.go`: functions on GoPaths with boolean results
+* `assert.go`: assertions just return an error object if they fail
+
 
 ## License (MIT)
 
