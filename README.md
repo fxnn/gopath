@@ -42,6 +42,24 @@ Now, as soon as an error occured, each operation turns to a no-op.
 That's why it suffices to check for errors in the end.
 
 
+## Enhanced usage
+
+GoPath has an extension mechanism that allows you to chain function calls with your own code.
+The first step is to define your own transformation function:
+
+```go
+func normalizePath(p gopath.GoPath) gopath.GoPath {
+	return p.Abs().Clean()
+}
+```
+
+Now, you are able to use GoPath's `Do` method:
+
+```go
+var p = gopath.FromPath("/some/path").Do(normalizePath)
+```
+
+
 ## Development
 
 While this project embeds functions from the [os](https://godoc.org/os),
