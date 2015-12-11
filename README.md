@@ -44,7 +44,8 @@ That's why it suffices to check for errors in the end.
 
 ## Development
 
-While this project embeds functions from the `os`, `path` and `path.filepath` packages,
+While this project embeds functions from the [os](https://godoc.org/os),
+[path](https://godoc.org/path) and [filepath](https://godoc.org/path/filepath) packages,
 it is far from being complete.
 Pull requests are welcome!
 
