@@ -31,7 +31,7 @@ if p, err = filepath.Rel(p, "other/path"); err != nil {
 // go on
 ```
 
-...gopath allows you to write the operations first, and do the error checking later.
+...GoPath allows you to write the operations first, and do the error checking later.
 
 ```go
 var p = gopath.FromPath("/my/path/to/somewhere").Abs().EvalSymlinks().Rel("other/path")
@@ -46,6 +46,14 @@ if p.HasErr() {
 The idea: the GoPath object encapsulates a path _and_ an error object.
 Now, as soon as an error occured, each operation turns to a no-op.
 That's why it suffices to check for errors in the end.
+
+So, just import gopath and go ahead:
+
+```go
+import "github.com/fxnn/gopath"
+```
+
+We don't pull thirdparty libs into your project.
 
 
 ## Enhanced usage
