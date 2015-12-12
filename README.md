@@ -1,5 +1,11 @@
 # gopath
-An alternative Go API for operating on paths without the need for error handling between each step.
+A Go library for nicer ways to cope with errors while working on the filesystem.
+
+Do the work first -- check for errors later.
+
+This library realizes the recommondations from the blog.golang.org article
+[Errors are values](https://blog.golang.org/errors-are-values).
+For even more information, also have a look at [Error handling and Go](http://blog.golang.org/error-handling-and-go).
 
 [![Build Status](https://travis-ci.org/fxnn/gopath.svg?branch=master)](https://travis-ci.org/fxnn/gopath)
 [![GoDoc](https://godoc.org/github.com/fxnn/gopath?status.svg)](https://godoc.org/github.com/fxnn/gopath)
