@@ -44,6 +44,10 @@ func (g GoPath) FileMode() os.FileMode {
 	return 0
 }
 
+// Glob calls filepath.Glob(string) and returns the matches and any possible
+// error.
+//
+// See also GlobAny(), if you just want one GoPath value.
 func (g GoPath) Glob() (matches []string, err error) {
 	return filepath.Glob(g.Path())
 }

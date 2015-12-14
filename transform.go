@@ -57,9 +57,11 @@ func (g GoPath) Stat() GoPath {
 }
 
 // Abs calls filepath.Abs() on the path.
+//
 // If the path is already absolute, it returns the path itself.
 // Otherwise, it returns an absolute representation of the path using the
 // current working directory.
+//
 // If an error occurs, it returns an errorneous GoPath.
 func (g GoPath) Abs() GoPath {
 	if g.HasErr() {
@@ -75,6 +77,7 @@ func (g GoPath) Abs() GoPath {
 
 // EvalSymlinks calls filepath.EvalSymlinks().
 // It evaluates any symlinks in the path.
+//
 // If the path is relative, the result might be relative, too.
 // If an error occurs, it returns an errorneous GoPath.
 func (g GoPath) EvalSymlinks() GoPath {
@@ -101,6 +104,14 @@ func (g GoPath) Clean() GoPath {
 	return g.withPath(filepath.Clean(g.path))
 }
 
+// GlobAny runs Glob() and selects the first match.
+//
+// If any error occurs, it returns an errorneous GoPath.
+// Note, that -- according to https://godoc.org/path/filepath#Glob --
+// this may only occur when the glob expression is not formatted
+// correctly.
+//
+// If there is no match, an empty GoPath is returned.
 func (g GoPath) GlobAny() GoPath {
 	matches, err := g.Glob()
 	if err != nil {
