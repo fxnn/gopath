@@ -22,7 +22,7 @@
 // ever occured in a chain of operations will remain visible.
 // This way, you can work with GoPaths like you would with any other object.
 //
-//		var p = gopath.FromPath("/my/path/to/somewhere").Abs().EvalSymlinks().Rel("other/path")
+//		var p = gopath.FromPath("/my/path/to/somewhere").Abs().EvalSymlinks().Rel(otherPath)
 //
 //		if p.HasErr() {
 //			// handle error
