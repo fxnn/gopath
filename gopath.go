@@ -38,8 +38,8 @@ func (g GoPath) ClearErr() GoPath {
 
 // IsEmpty returns true exactly iff this GoPath contains the empty path:
 //
-//		assert.True(gopath.FromPath("").IsEmpty())
-//		assert.False(gopath.FromPath("/some/empty/file").IsEmpty())
+//      assert.True(gopath.FromPath("").IsEmpty())
+//      assert.False(gopath.FromPath("/some/empty/file").IsEmpty())
 //
 // Note, that this does not check the file size, contents or anything like this.
 func (g GoPath) IsEmpty() bool {
@@ -66,13 +66,13 @@ type Transformer func(GoPath) GoPath
 // It therefore is an extension point. For example, you could define a
 // transformer like the following:
 //
-// 		func normalizePath(p gopath.GoPath) gopath.GoPath {
-//    		return p.Abs().Clean()
-//		}
+//      func normalizePath(p gopath.GoPath) gopath.GoPath {
+//          return p.Abs().Clean()
+//      }
 //
 // Now, you can invoke it using Do:
 //
-//		var p = gopath.FromPath("some/path").Do(normalizePath)
+//      var p = gopath.FromPath("some/path").Do(normalizePath)
 //
 func (g GoPath) Do(transformer Transformer) GoPath {
 	if g.HasErr() {
