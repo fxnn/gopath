@@ -122,3 +122,48 @@ func (g GoPath) GlobAny() GoPath {
 	}
 	return Empty()
 }
+
+// Rel returns the other (targpath) GoPath, expressed as path relative to this
+// GoPath.
+//
+// 		var base = gopath.FromPath("/a")
+//		var target = gopath.FromPath("/b/c")
+//		var rel = base.Rel(target)
+//
+//		assert.Equal(rel.Path(), "../b/c")
+//
+// Note that this func follows the argument order of the filepath.Rel func,
+// while the RelTo() func implements the reverse argument order.
+func (g GoPath) Rel(targpath GoPath) GoPath {
+	if g.HasErr() {
+		return g
+	}
+	if targpath.HasErr() {
+		return targpath
+	}
+
+	var result, err = filepath.Rel(g.Path(), targpath.Path())
+	if err != nil {
+		return targpath.withErr(err)
+	}
+	return targpath.withPath(result)
+}
+
+// RelTo returns this GoPath, expressed as path relative to the other (base)
+// GoPath.
+//
+// 		var base = gopath.FromPath("/a")
+//		var target = gopath.FromPath("/b/c")
+//		var rel = target.RelTo(base)
+//
+//		assert.Equal(rel.Path(), "../b/c")
+//
+// Note that this func uses the inverse argument order of the filepath.Rel func,
+// while the Rel() func implements the exact argument order.
+func (g GoPath) RelTo(base GoPath) GoPath {
+	if g.HasErr() {
+		return g
+	}
+
+	return base.Rel(g)
+}

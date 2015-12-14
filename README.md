@@ -24,7 +24,7 @@ if p, err = filepath.Abs(p); err != nil {
 if p, err = filepath.EvalSymlinks(p); err != nil {
   // handle error
 }
-if p, err = filepath.Rel(p, "other/path"); err != nil {
+if p, err = filepath.Rel(p, "/other/path"); err != nil {
   // handle error
 }
 
@@ -34,7 +34,7 @@ if p, err = filepath.Rel(p, "other/path"); err != nil {
 ...GoPath allows you to write the operations first, and do the error checking later.
 
 ```go
-var p = gopath.FromPath("/my/path/to/somewhere").Abs().EvalSymlinks().Rel("other/path")
+var p = gopath.FromPath("/my/path/to/somewhere").Abs().EvalSymlinks().Rel("/other/path")
 
 if p.HasErr() {
   // handle error
