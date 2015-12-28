@@ -4,6 +4,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"strings"
 )
 
 func (g GoPath) String() string {
@@ -48,6 +49,21 @@ func (g GoPath) FileMode() os.FileMode {
 // error.
 //
 // See also GlobAny(), if you just want one GoPath value.
+// Especially it returns g.Err(), if this GoPath is errorneous.
 func (g GoPath) Glob() (matches []string, err error) {
+	if g.HasErr() {
+		return make([]string, 0), g.Err()
+	}
 	return filepath.Glob(g.Path())
+}
+
+// Components returns all path components in this gopath.
+// That is, the path is split at each os.PathSeparator.
+//
+// If this gopath is errorneous, it returns the empty array.
+func (g GoPath) Components() []string {
+	if g.HasErr() {
+		return make([]string, 0)
+	}
+	return strings.Split(g.Path(), string(os.PathSeparator))
 }
