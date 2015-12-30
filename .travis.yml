@@ -1,9 +1,17 @@
 language: go
 
 go:
-  #- tip
+  - tip
+  - 1.6beta1
+  - 1.5.2
+  - 1.5.1
   - 1.5
   - 1.4.2
   - 1.4
   - 1.3
   - 1.2
+
+matrix:
+  allow_failures:
+    - go: tip
+      # HINT: tip build is only for interest -- decision to support new versions is made manually
