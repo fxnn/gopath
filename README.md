@@ -93,6 +93,15 @@ We have
 * `assert.go`: assertions just return an error object if they fail
 
 
+## Related Work
+
+The GitHub project [go-on/queue](https://github.com/go-on/queue) also provides a way
+for elegant error handling in Go, but is not restricted to path operations.
+It rather allows you to execute any sequence of functions with separated error handling.
+However, that approach needs some amount of extra code and may reduce code readability,
+while this GoPath aims to support a readable notation of path operations.
+
+
 ## License (MIT)
 
 Licensed under the MIT License, see [LICENSE](LICENSE) file for more information.
