@@ -56,7 +56,7 @@ import "github.com/fxnn/gopath"
 We don't pull thirdparty libs into your project.
 
 
-## Enhanced usage
+## Extensibility
 
 GoPath has an extension mechanism that allows you to chain function calls with your own code.
 The first step is to define your own transformation function:
