@@ -8,10 +8,10 @@ func TestRel_bc(t *testing.T) {
 	var target = FromPath("/b/c")
 
 	var rel = base.Rel(target)
-	assertGoPathEqual(t, rel, FromPath("../b/c"))
+	assertGoPathToSlashEqual(t, rel, FromPath("../b/c"))
 
 	var relTo = target.RelTo(base)
-	assertGoPathEqual(t, relTo, FromPath("../b/c"))
+	assertGoPathToSlashEqual(t, relTo, FromPath("../b/c"))
 
 }
 
@@ -21,10 +21,10 @@ func TestRel_abc(t *testing.T) {
 	var target = FromPath("/a/b/c")
 
 	var rel = base.Rel(target)
-	assertGoPathEqual(t, rel, FromPath("b/c"))
+	assertGoPathToSlashEqual(t, rel, FromPath("b/c"))
 
 	var relTo = target.RelTo(base)
-	assertGoPathEqual(t, relTo, FromPath("b/c"))
+	assertGoPathToSlashEqual(t, relTo, FromPath("b/c"))
 
 }
 

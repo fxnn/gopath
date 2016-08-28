@@ -11,6 +11,10 @@ func assertGoPathHasErr(t *testing.T, actual GoPath) {
 	}
 }
 
+func assertGoPathToSlashEqual(t *testing.T, actual GoPath, expected GoPath) {
+	assertGoPathEqual(t, actual.ToSlash(), expected.ToSlash())
+}
+
 func assertGoPathEqual(t *testing.T, actual GoPath, expected GoPath) {
 	if actual.Err() != expected.Err() {
 		t.Errorf("expected Err() to be %v, but was %v", expected.Err(), actual.Err())
